@@ -3,6 +3,14 @@ __pycache__
 .DS_Store
 *.txt
 *.wav
+!.gitignore
+# Re-include the small evaluation audio under Dataset/ (needed to run
+# benchmarks on a cloud instance after cloning the repo).
+!Dataset/
+!Dataset/cpu/
+!Dataset/gpu/
+!Dataset/Reference_Audio/
+!Dataset/**/*.wav
 examples/blizzard08/data
 examples/blizzard08/processed_data
 examples/blizzard13-ext/data

@@ -24,7 +24,7 @@ class MWhisperActivationsBenchmark(Benchmark):
 
     def __init__(
         self,
-        whisper_model: str = "small",
+        whisper_model: str = "large-v3",
     ):
         super().__init__(
             name="mWhisper Activations",
@@ -35,10 +35,11 @@ class MWhisperActivationsBenchmark(Benchmark):
             supported_devices=[DeviceSupport.CPU, DeviceSupport.GPU],
             version="1.3.0",
         )
-        self.processor = WhisperFeatureExtractor.from_pretrained("openai/whisper-small")
-        self.model = WhisperForConditionalGeneration.from_pretrained(
-            "openai/whisper-small"
-        )
+        # whisper-large-v3 is multilingual and covers Nepali ("ne") far better
+        # than the default small model.
+        whisper_repo = f"openai/whisper-{whisper_model}"
+        self.processor = WhisperFeatureExtractor.from_pretrained(whisper_repo)
+        self.model = WhisperForConditionalGeneration.from_pretrained(whisper_repo)
         self.device = "cpu"
         self.model.to(self.device)
 
