@@ -22,7 +22,7 @@ class Wav2Vec2XLSRActivationsBenchmark(Benchmark):
 
     def __init__(
         self,
-        wav2vec2_model: str = "facebook/wav2vec2-xlsr-53-espeak-cv-ft",
+        wav2vec2_model: str = "gagan3012/wav2vec2-xlsr-nepali",
     ):
         super().__init__(
             name="Wav2Vec2 Activations",
