@@ -11,12 +11,22 @@ Expected layout (relative to this repo root):
 """
 
 from pathlib import Path
-
-from ttsds import BenchmarkSuite
-from ttsds.util.dataset import DirectoryDataset
+import sys
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATASET_DIR = REPO_ROOT / "Dataset"
+
+# The package uses a src/ layout, so it must be installed (pip install -e .) or
+# on sys.path. Prefer the installed package; fall back to the checked-out src/
+# so the script works even before installation.
+SRC_DIR = REPO_ROOT / "src"
+try:
+    import ttsds  # noqa: F401
+except ModuleNotFoundError:
+    sys.path.insert(0, str(SRC_DIR))
+
+from ttsds import BenchmarkSuite
+from ttsds.util.dataset import DirectoryDataset
 
 # Evaluated datasets: the two finetuned-model outputs to compare.
 evaluated_datasets = [

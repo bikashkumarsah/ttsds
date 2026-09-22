@@ -1,0 +1,35 @@
+# Runtime dependencies for running the TTSDS multilingual Nepali benchmark.
+# Mirrors the project's core dependencies (see pyproject.toml [project].dependencies).
+# Install with:
+#   pip install -r requirements.txt
+# Then install this package itself (it uses the src/ layout):
+#   pip install -e .
+
+# Core speech/audio
+allosaurus
+jiwer
+librosa
+openai-whisper==20250625
+pandas
+pesq
+pyannote.audio
+pyworld
+rich
+sentencepiece>=0.2.0
+silero-vad
+statsmodels
+wespeaker-unofficial
+phonemizer-fork
+
+# Deep learning backend. torch must be >= 2.2 so that the transformers version
+# below can use torch.library.register_fake. The default base env on macOS
+# Anaconda ships torch 2.1.0, which crashes HuBERT/model imports with
+# "module 'torch.library' has no attribute 'register_fake'". For the cloud GPU
+# instance, install the CUDA wheel matching your runtime, e.g.:
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+torch>=2.2.0
+torchaudio>=2.2.0
+transformers>=4.40.0
+
+# Build/install helpers
+hatchling

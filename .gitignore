@@ -2,8 +2,9 @@
 __pycache__
 .DS_Store
 *.txt
-*.wav
 !.gitignore
+!requirements.txt
+*.wav
 # Re-include the small evaluation audio under Dataset/ (needed to run
 # benchmarks on a cloud instance after cloning the repo).
 !Dataset/
